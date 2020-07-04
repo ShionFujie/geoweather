@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <script type="text/javascript">
+      google.charts.load("current", { packages: ["geochart"] });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          ["都道府県", "降水確率"],
+          ["北海道", { v: 10, f: "10%" }],
+          ["青森", { v: 20, f: "20%" }],
+          ["秋田", { v: 20, f: "20%" }],
+          ["岩手", { v: 0, f: "0%" }]
+        ]);
+
+        var options = {
+          region: "JP",
+          resolution: "provinces",
+          displayMode: 'regions',
+          colorAxis: {
+            minValue: 0,
+            maxValue: 100,
+            colors: ["white", "blue"]
+          },
+          backgroundColor: '#ebf7fe'
+        };
+
+        var chart = new google.visualization.GeoChart(
+          document.getElementById("regions_div")
+        );
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
